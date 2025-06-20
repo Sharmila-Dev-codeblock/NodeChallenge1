@@ -27,7 +27,7 @@ This backend service allows you to create nested nodes, fetch subtrees and add o
 Step 1 : Clone the Repository
 
 git clone https://github.com/your-username/codeblock_challenge1.git
-cd codeblock_challenge1
+
 
 Step 2 : Install Dependencies
 
