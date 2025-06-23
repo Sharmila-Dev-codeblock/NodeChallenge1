@@ -2,6 +2,9 @@ import 'reflect-metadata';
 import { DataSource } from 'typeorm';
 import { Node } from './src/nodes/nodeEntity'; // Adjust this path if needed
 
+/**
+ * TypeORM DataSource configuration for PostgreSQL
+ */
 const AppDataSource = new DataSource({
   type: 'postgres',
   host: 'localhost',
@@ -13,10 +16,14 @@ const AppDataSource = new DataSource({
   entities: [Node],
 });
 
+/**
+ * Seeds the database with an initial tree of PC components with AlphaPC as root node
+ */
 async function seed() {
   await AppDataSource.initialize();
   const repo = AppDataSource.getRepository(Node);
 
+  //Root node - AlphaPC
   const alphaPCName = 'AlphaPC';
   const alphaPC = repo.create({
     name: alphaPCName,
@@ -25,6 +32,7 @@ async function seed() {
   });
   await repo.save(alphaPC);
 
+  // First child of AlphaPC
   const processingName = 'Processing';
   const processing = repo.create({
     name: processingName,
@@ -34,6 +42,7 @@ async function seed() {
   });
   await repo.save(processing);
 
+  // Child of Processing
   const cpuName = 'CPU';
   const cpu = repo.create({
     name: cpuName,
@@ -43,6 +52,7 @@ async function seed() {
   });
   await repo.save(cpu);
 
+  // Sibling to Processing under AlphaPC
   const graphicsName = 'Graphics';
   const graphics = repo.create({
     name: graphicsName,
@@ -52,6 +62,7 @@ async function seed() {
   });
   await repo.save(graphics);
 
+  // Another branch
   const storageName = 'Storage';
   const storage = repo.create({
     name: storageName,

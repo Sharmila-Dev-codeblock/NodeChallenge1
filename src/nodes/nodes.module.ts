@@ -5,8 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Node } from './nodeEntity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Node])],
+  imports: [TypeOrmModule.forFeature([Node])], // Importing TypeOrmModule with Node entity to enable repository injection
   controllers: [NodesController],
-  providers: [NodesService]
+  providers: [NodesService],
 })
 export class NodesModule {}
